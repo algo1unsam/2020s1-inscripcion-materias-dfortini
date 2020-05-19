@@ -1,0 +1,32 @@
+import estudiante.*
+import materia.*
+
+describe "test de materias" {
+
+	var dario
+	var matematica
+	var materiaAprobadaMatematica
+	var fisica
+
+	fixture {
+		dario = new Estudiante()
+		matematica = new Materia()
+		fisica = new Materia()
+	}
+
+	test "registrar materia aprobada por un alumno" {
+		dario.registrarMateriaAprobada(matematica, 9)
+		assert.equals(1, dario.materiasAprobadas().size())
+	}
+
+	test "no tiene aprobada una materia" {
+		assert.notThat(dario.tieneAprobadaMateria(matematica))
+	}
+
+	test "tiene aprobada una materia " {
+		dario.registrarMateriaAprobada(matematica, 9)
+		assert.that(dario.tieneAprobadaMateria(matematica))
+	}
+
+}
+
